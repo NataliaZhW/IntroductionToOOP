@@ -217,5 +217,5 @@ int main()
 	drob8.reduceFraction();
 	drob8.printFraction();
 
-	cout << "\n";
+	cout << "\n\n";
 }
