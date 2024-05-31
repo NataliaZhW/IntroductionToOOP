@@ -82,8 +82,9 @@ public:
 	//Методы
 	// дробь на экран
 	void printFraction() const { cout << numerator << "/" << denominater << " \n"; }
-	void printProperFraction() const //Преобразование в правильную дробь для печати
+	void printProperFraction() //Преобразование в правильную дробь для печати
 	{ 
+		reduceFraction();
 		cout << "Правильная дробь с целой частью:\n" << numerator / denominater << " " << numerator % denominater << "/" << denominater << " \n"; 
 	} 
 	//сокращение дроби
