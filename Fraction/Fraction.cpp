@@ -11,6 +11,11 @@ private:
 	int denominater; // Знаменатель
 public:
 	Fraction() { numerator = denominater = 1; cout << "DefaultConstructop: \t" << this << "\n"; }
+	Fraction(int numerator)
+	{
+		setNumerator(numerator);
+		denominater = 1;
+	}
 	Fraction(int numerator, int denominater)
 	{
 		setNumerator(numerator);
@@ -83,14 +88,26 @@ public:
 	// дробь на экран
 	void printFraction() const { cout << numerator << "/" << denominater << " \n"; }
 	void printProperFraction() //Преобразование в правильную дробь для печати
-	{ 
+	{
 		reduceFraction();
-		cout << "Правильная дробь с целой частью:\n" << numerator / denominater << " " << numerator % denominater << "/" << denominater << " \n"; 
-	} 
+		cout << "Правильная дробь с целой частью:\t";
+		if (numerator / denominater > 0)
+			cout << numerator / denominater << " ";
+		if (numerator - numerator / denominater != 0) {
+			if (numerator / denominater > 0) {
+				cout << "(";
+			}
+			cout << numerator % denominater << "/" << denominater;
+			if (numerator / denominater > 0) {
+				cout << ")";
+			}
+		}
+		cout << " \n";
+	}
 	//сокращение дроби
 	void reduceFraction()
 	{
-		cout << " " << (this->denominater < 0) << "\n";
+		//cout << " " << (this->denominater < 0) << "\n";
 		//убираем отрицательность
 		if (this->denominater < 0) {
 			numerator*=-1;
@@ -184,13 +201,16 @@ int main()
 	cout << "Первая, вторая и третья дроби.\n";
 	Fraction drob1;
 	drob1.printFraction();
+	drob1.printProperFraction();
 	Fraction drob2(1, 2);
 	drob2.printFraction();
+	drob2.printProperFraction();
 	Fraction drob3(2, 3);
 	drob3.printFraction();
+	drob3.printProperFraction();
 
 	//cout << "Четвертая дробь.\n";
-	Fraction drob4 = drob3 + drob2;	
+	Fraction drob4 = drob3 + drob2;
 	cout << "\nЧетвертая дробь, как сумма третьей и второй.\n";
 	drob4.printFraction();
 	drob4.printProperFraction();
@@ -199,6 +219,7 @@ int main()
 	Fraction drob5 = drob4 - drob1;
 	cout << "\nПятая дробь, как разность четвертой и первой.\n";
 	drob5.printFraction();
+	drob5.printProperFraction();
 
 	//cout << "Шестая дробь.\n";
 	Fraction drob6 = drob3 * drob2;
@@ -217,6 +238,12 @@ int main()
 	cout << "сокращаем\n";
 	drob8.reduceFraction();
 	drob8.printFraction();
+
+	cout << "\nДевятая дробь, без дробной части.\n";
+	Fraction drob9(-200, -200);
+	drob9.printFraction();
+	drob9.printProperFraction();
+
 
 	cout << "\n\n";
 }
